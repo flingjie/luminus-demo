@@ -1,58 +1,16 @@
 (ns luminus-demo.core
-  (:require [reagent.core :as reagent :refer [atom]]
+  (:require [reagent.core :as r :refer [atom]]
             [reagent.session :as session]
             [secretary.core :as secretary :include-macros true]
             [goog.events :as events]
             [goog.history.EventType :as EventType]
             [markdown.core :refer [md->html]]
-            [ajax.core :refer [GET POST]])
+            [ajax.core :refer [GET POST]]
+            [luminus-demo.home :refer [home-page]]
+            [luminus-demo.todo :refer [todo-page]]
+            [luminus-demo.navbar :refer [navbar]]
+            )
   (:import goog.History))
-
-(defn nav-link [uri title page collapsed?]
-  [:li {:class (when (= page (session/get :page)) "active")}
-   [:a {:href uri
-        :on-click #(reset! collapsed? true)}
-    title]])
-
-(defn navbar []
-  (let [collapsed? (atom true)]
-    (fn []
-      [:nav.nav-tabs-justified.navbar..navbar-fixed-top
-       [:div.container
-        [:div.navbar-header
-         [:button.navbar-toggle
-          {:class         (when-not @collapsed? "collapsed")
-           :data-toggle   "collapse"
-           :aria-expanded @collapsed?
-           :aria-controls "navbar"
-           :on-click      #(swap! collapsed? not)}
-          [:span.sr-only "Toggle Navigation"]
-          [:span.icon-bar]
-          [:span.icon-bar]
-          [:span.icon-bar]]
-         [:a.navbar-brand {:href "#/"} "Flingjie"]]
-        [:div.navbar-collapse.collapse
-         (when-not @collapsed? {:class "in"})
-         [:ul.nav.navbar-nav
-          [nav-link "#/" "Home" :home collapsed?]
-          [nav-link "#/todo" "Todo" :todo collapsed?]]]]])))
-
-
-(defn home-page []
-  [:div.container
-   [:div.jumbotron
-    [:h1 "Welcome to luminus-demo"]
-    [:p "Time to start building your site!"]
-    [:p [:a.btn.btn-primary.btn-lg {:href "http://luminusweb.net"} "Learn more »"]]]
-   ])
-
-(defn todo-page []
-  [:div.container
-   [:div.jumbotron
-    [:h1 "Welcome to luminus-demo"]
-    [:p "Time to start building your site!"]
-    [:p [:a.btn.btn-primary.btn-lg {:href "http://luminusweb.net"} "Learn more »"]]]
-   ])
 
 (def pages
   {:home #'home-page
@@ -88,8 +46,8 @@
   (GET (str js/context "/todo") {:handler #(session/put! :docs %)}))
 
 (defn mount-components []
-  (reagent/render [#'navbar] (.getElementById js/document "navbar"))
-  (reagent/render [#'page] (.getElementById js/document "app")))
+  (r/render [#'navbar] (.getElementById js/document "navbar"))
+  (r/render [#'page] (.getElementById js/document "app")))
 
 (defn init! []
   (fetch-docs!)

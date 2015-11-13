@@ -29,6 +29,7 @@
                  [secretary "1.2.3"]
                  [org.clojure/core.async "0.2.371"]
                  [cljs-ajax "0.5.1"]
+                 [net.drib/strokes "0.5.1"]
                  [org.immutant/web "2.1.0"]]
 
   :min-lein-version "2.0.0"
