@@ -2,14 +2,17 @@
   (:require [reagent.core :as r :refer [atom]]
             ))
 
-(defn atom-input [value]
-  [:input {:type "text"
-           :value @value
-           :on-change #(reset! value (-> % .-target .-value))}])
+
+(defn init-svg []
+  (-> js/d3 (.select "svg")
+      (.append "circle")
+      (.attr "cx" 350)
+      (.attr "cy" 200)
+      (.attr "r" 200)
+      (.attr "class" "left")))
 
 (defn home-page []
-  (let [val (r/atom "foo")]
-    (fn []
-      [:div.container
-       [:p "The value is now: " @val]
-       [:p "Change it here: " [atom-input val]]])))
+  [:div.container
+   [:input {:type "button" :value "Try" :class "btn-primary"
+            :on-click #(init-svg)}]
+   [:svg {:width 600 :height 400}]])

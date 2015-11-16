@@ -1,5 +1,6 @@
 (ns luminus-demo.navbar
   (:require [reagent.core :as r :refer [atom]]
+            [reagent.session :as session]
             ))
 
 (defn nav-link [uri title page collapsed?]

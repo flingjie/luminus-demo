@@ -1,0 +1,14 @@
+circle {
+  fill-opacity: 0.5; }
+
+circle:hover {
+  fill-opacity: 0.8; }
+
+circle.left {
+  fill: brown; }
+
+circle.right {
+  fill: steelblue; }
+
+circle.bottom {
+  fill: green; }
