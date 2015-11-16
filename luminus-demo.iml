@@ -83,8 +83,6 @@
     <orderEntry type="library" name="Leiningen: metosin/ring-http-response:0.6.5" level="project" />
     <orderEntry type="library" name="Leiningen: metosin/ring-middleware-format:0.6.0" level="project" />
     <orderEntry type="library" name="Leiningen: net.colourcoding/poppea:0.2.1" level="project" />
-    <orderEntry type="library" name="Leiningen: net.drib/mrhyde:0.5.3" level="project" />
-    <orderEntry type="library" name="Leiningen: net.drib/strokes:0.5.1" level="project" />
     <orderEntry type="library" name="Leiningen: net.incongru.watchservice/barbary-watchservice:1.0" level="project" />
     <orderEntry type="library" name="Leiningen: net.java.dev.jna/jna:3.2.2" level="project" />
     <orderEntry type="library" name="Leiningen: ns-tracker:0.3.0" level="project" />
