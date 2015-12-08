@@ -5,7 +5,7 @@
 (defn todo-page []
   [:div.container
    [:div.jumbotron
-    [:h1 "Welcome to luminus"]
-    [:p "Time to start building your site!"]
-    [:p [:a.btn.btn-primary.btn-lg {:href "http://luminusweb.net"} "Learn more »"]]]
-   ])
+    [:h1 "Big Data"]
+    [:p "Collectiong more info"]
+   ]
+  ])
