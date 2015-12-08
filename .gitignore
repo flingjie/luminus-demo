@@ -1,4 +1,4 @@
-!/target/*.jar
+/target/*
 /lib
 /classes
 /checkouts
@@ -10,3 +10,4 @@ profiles.clj
 /.env
 *.log
 /.idea/*
+!/target/*.jar
