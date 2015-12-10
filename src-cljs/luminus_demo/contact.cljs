@@ -1,8 +1,8 @@
-(ns luminus-demo.todo
+(ns luminus-demo.contact
   (:require [reagent.core :as r :refer [atom]]
             ))
 
-(defn todo-page []
+(defn contact-page []
   [:div.container
    [:div.jumbotron
     [:h1 "Big Data"]

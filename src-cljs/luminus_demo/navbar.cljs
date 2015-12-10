@@ -25,9 +25,9 @@
           [:span.icon-bar]
           [:span.icon-bar]
           [:span.icon-bar]]
-         [:a.navbar-brand {:href "#/"} "：）"]]
+         [:a.navbar-brand {:href "#/"} "首页"]]
         [:div.navbar-collapse.collapse
          (when-not @collapsed? {:class "in"})
          [:ul.nav.navbar-nav
-          [nav-link "#/" "Home" :home collapsed?]
-          [nav-link "#/todo" "Todo" :todo collapsed?]]]]])))
+          [nav-link "#/" "智能查询" :home collapsed?]
+          [nav-link "#/contact" "留言" :contact collapsed?]]]]])))

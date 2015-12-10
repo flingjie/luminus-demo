@@ -7,14 +7,14 @@
             [markdown.core :refer [md->html]]
             [ajax.core :refer [GET POST]]
             [luminus-demo.home :refer [home-page]]
-            [luminus-demo.todo :refer [todo-page]]
+            [luminus-demo.contact :refer [contact-page]]
             [luminus-demo.navbar :refer [navbar]]
             )
   (:import goog.History))
 
 (def pages
   {:home #'home-page
-   :todo #'todo-page})
+   :contact #'contact-page})
 
 (defn page []
   [(pages (session/get :page))])
@@ -26,8 +26,8 @@
 (secretary/defroute "/" []
   (session/put! :page :home))
 
-(secretary/defroute "/todo" []
-                    (session/put! :page :todo))
+(secretary/defroute "/contact" []
+                    (session/put! :page :contact))
 
 ;; -------------------------
 ;; History
@@ -42,14 +42,11 @@
 
 ;; -------------------------
 ;; Initialize app
-(defn fetch-docs! []
-  (GET (str js/context "/todo") {:handler #(session/put! :docs %)}))
 
 (defn mount-components []
   (r/render [#'navbar] (.getElementById js/document "navbar"))
   (r/render [#'page] (.getElementById js/document "app")))
 
 (defn init! []
-  (fetch-docs!)
   (hook-browser-navigation!)
   (mount-components))
