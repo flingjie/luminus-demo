@@ -4,8 +4,7 @@
 
 (defn contact-page []
   [:div.container
-   [:div.jumbotron
-    [:h1 "Big Data"]
-    [:p "Collectiong more info"]
+   [:div [:label "邮箱："]
+         [:label "van0229@gmail.com"]
    ]
   ])

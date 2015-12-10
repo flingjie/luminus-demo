@@ -30,4 +30,4 @@
          (when-not @collapsed? {:class "in"})
          [:ul.nav.navbar-nav
           [nav-link "#/" "智能查询" :home collapsed?]
-          [nav-link "#/contact" "留言" :contact collapsed?]]]]])))
+          [nav-link "#/contact" "联系方式" :contact collapsed?]]]]])))
