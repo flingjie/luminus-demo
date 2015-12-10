@@ -10,4 +10,4 @@ profiles.clj
 /.env
 *.log
 /.idea/*
-!/target/*.jar
+#!/target/*.jar
