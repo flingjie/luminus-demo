@@ -6,11 +6,36 @@
             [goog.history.EventType :as EventType]
             [markdown.core :refer [md->html]]
             [ajax.core :refer [GET POST]]
-            [luminus-demo.home :refer [home-page]]
-            [luminus-demo.contact :refer [contact-page]]
-            [luminus-demo.navbar :refer [navbar]]
             )
   (:import goog.History))
+
+(defn nav-link [uri title page collapsed?]
+  [:li {:class (when (= page (session/get :page)) "active")}
+   [:a {:href uri
+        :on-click #(reset! collapsed? true)}
+    title]])
+
+(defn navbar []
+  (let [collapsed? (atom true)]
+    (fn []
+      [:ul
+       [:li
+        [:a {:href "#/"} "智能查询"]]
+       [:li
+        [:a {:href "#/contact"} "联系方式"]]
+      ])))
+
+
+(defn home-page []
+  [:div.container
+    [:label "home"]
+  ])
+
+(defn contact-page []
+  [:div.container
+    [:label "contact"]
+  ])
+
 
 (def pages
   {:home #'home-page
@@ -24,7 +49,7 @@
 (secretary/set-config! :prefix "#")
 
 (secretary/defroute "/" []
-  (session/put! :page :home))
+                    (session/put! :page :home))
 
 (secretary/defroute "/contact" []
                     (session/put! :page :contact))

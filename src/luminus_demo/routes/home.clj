@@ -7,7 +7,10 @@
 (defn home-page []
   (layout/render "home.html"))
 
+(defn contact-page []
+  (layout/render "contact.html"))
+
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (GET "/todo" [] (ok (-> "docs/todo.md" io/resource slurp))))
+  (GET "/contact" [] (contact-page)))
 
