@@ -21,7 +21,9 @@
                  [org.clojure/tools.nrepl "0.2.12"]
                  [org.webjars/bootstrap "3.1.1"]
                  [org.webjars/jquery "1.9.0"]
-                 [org.webjars.bower/bootstrap-autohidingnavbar "1.0.4"]
+                 [org.webjars.bower/bootstrap-autohidingnavbar "1.0.4"
+                  :exclusions [org.webjars.bower/jquery
+                               org.webjars.bower/bootstrap]]
                  [com.fzakaria/slf4j-timbre "0.2.1"]
                  [org.clojure/clojurescript "1.7.170" :scope "provided"]
                  [reagent "0.5.1"]
