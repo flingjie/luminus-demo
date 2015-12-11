@@ -21,6 +21,7 @@
                  [org.clojure/tools.nrepl "0.2.12"]
                  [org.webjars/bootstrap "3.3.5"]
                  [org.webjars/jquery "2.1.4"]
+                 [org.webjars/bootstrap-autohidingnavbar "1.0.4"]
                  [com.fzakaria/slf4j-timbre "0.2.1"]
                  [org.clojure/clojurescript "1.7.170" :scope "provided"]
                  [reagent "0.5.1"]
@@ -60,7 +61,7 @@
       :output-dir "target/cljsbuild/public/js/out"
       :externs ["react/externs/react.js"]
       :pretty-print true}}}}
-  
+
   :profiles
   {:uberjar {:omit-source true
              :env {:production true}
@@ -69,8 +70,8 @@
               {:builds
                {:app
                 {:source-paths ["env/prod/cljs"]
-                 :compiler {:optimizations :advanced :pretty-print false}}}} 
-             
+                 :compiler {:optimizations :advanced :pretty-print false}}}}
+
              :aot :all}
    :dev           [:project/dev :profiles/dev]
    :test          [:project/test :profiles/test]
@@ -83,8 +84,8 @@
                    :cljsbuild
                    {:builds
                     {:app
-                     {:source-paths ["env/dev/cljs"] :compiler {:source-map true}}}} 
-                  
+                     {:source-paths ["env/dev/cljs"] :compiler {:source-map true}}}}
+
                   :figwheel
                   {:http-server-root "public"
                    :server-port 3449
@@ -92,7 +93,7 @@
                    :nrepl-middleware ["cemerick.piggieback/wrap-cljs-repl"]
                    :css-dirs ["resources/public/css"]
                    :ring-handler luminus-demo.handler/app}
-                  
+
                   :repl-options {:init-ns luminus-demo.core}
                   :injections [(require 'pjstadig.humane-test-output)
                                (pjstadig.humane-test-output/activate!)]
