@@ -31,6 +31,7 @@
                  [reagent-utils "0.1.5"]
                  [secretary "1.2.3"]
                  [org.clojure/core.async "0.2.371"]
+                 [clj-http "2.0.0"]
                  [cljs-ajax "0.5.1"]
                  [org.immutant/web "2.1.0"]
                  [prismatic/dommy "1.1.0"]]
