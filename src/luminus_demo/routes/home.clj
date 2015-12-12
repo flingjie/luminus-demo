@@ -3,7 +3,6 @@
             [compojure.core :refer [defroutes GET POST]]
             [ring.util.http-response :refer [ok]]
             [clj-http.client :as client]
-            [clojure.data.json :as json]
             [cheshire.core :as json]
             [clojure.java.io :as io]))
 
