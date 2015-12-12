@@ -34,6 +34,7 @@
                  [clj-http "2.0.0"]
                  [cljs-ajax "0.5.1"]
                  [org.immutant/web "2.1.0"]
+                 [cheshire "5.5.0"]
                  [prismatic/dommy "1.1.0"]]
 
   :min-lein-version "2.0.0"
