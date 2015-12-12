@@ -2,6 +2,10 @@
   <head>
       <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- scripts and styles -->
+      {% style "/assets/bootstrap/css/bootstrap.min.css" %}
+      {% style "/assets/bootstrap/css/bootstrap-theme.min.css" %}
+      {% style "/css/screen.css" %}
       <title>健康110</title>
   </head>
   <body>
@@ -14,7 +18,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">主页</a>
+          <a class="navbar-brand" href="/"><img src="/images/home.ico"></a>
         </div>
 
         <div class="collapse navbar-collapse" id="main－navbar">
@@ -28,12 +32,9 @@
     {% block content %}{% endblock %}
   </body>
     <!-- scripts and styles -->
-    {% style "/assets/bootstrap/css/bootstrap.min.css" %}
-    {% style "/assets/bootstrap/css/bootstrap-theme.min.css" %}
-    {% style "/css/screen.css" %}
     {% script "/assets/jquery/jquery.min.js" %}
     {% script "/assets/bootstrap/js/bootstrap.min.js" %}
-    {% script "/assets/bootstrap-autohidingnavbar/jquery.bootstrap-autohidingnavbar.min.js" %}
+    {% script "/assets/bootstrap-autohidingnavbar/dist/jquery.bootstrap-autohidingnavbar.min.js" %}
     <script type="text/javascript">
         $(".navbar-fixed-top").autoHidingNavbar({
           // see next for specifications
