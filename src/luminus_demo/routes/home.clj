@@ -3,7 +3,7 @@
             [compojure.core :refer [defroutes GET POST]]
             [ring.util.http-response :refer [ok]]
             [clj-http.client :as client]
-            [cheshire.core :as json]
+            [cheshire.core :refer [parse-string]]
             [clojure.java.io :as io]))
 
 (defn home-page []
@@ -14,14 +14,14 @@
 
 (defn search-drug []
   (fn [req]
-    (let [keyword (get (:params req) "keyword")])
-    (:body (client/post "http://www.tngou.net/api/drug/classify"
+    (let [keyword (get (:params req) "keyword")]
+      (parse-string (:body (client/post "http://www.tngou.net/api/drug/classify"
                         {:form-params
                          {:name "drug"
                           :keyword keyword
                           }
                          }
-                        :content-type :json))))
+                        :content-type :json))))))
 
 (defroutes home-routes
   (GET "/" [] (home-page))
