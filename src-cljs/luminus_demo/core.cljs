@@ -9,11 +9,34 @@
             )
   (:import goog.History))
 
-(defn nav-link [uri title page collapsed?]
-  [:li {:class (when (= page (session/get :page)) "active")}
-   [:a {:href uri
-        :on-click #(reset! collapsed? true)}
-    title]])
+
+(defn handler [reponse]
+  (.log js/console (str "result:" reponse)))
+
+(defn error-handler [{:keys [status status-text]}]
+  (.log js/console (str "error: " status " " status-text)))
+
+(defn query []
+  (let [csrf (.-value (.getElementById js/document "token"))
+        keyword (.-value (.getElementById js/document "keyword"))]
+    (POST "/"
+          {:headers {:x-csrf-Token csrf}
+           :params {:keyword keyword}
+           :handler handler
+           :error-handler error-handler})))
+
+(defn debug []
+  (let [csrf (.-value (.getElementById js/document "token"))
+        keyword (.-value (.getElementById js/document "keyword"))]
+    (.log js/console (str "debug: " csrf " " keyword))))
+
+(defn query-div []
+  (fn []
+    [:div.text-center
+     [:form.form-horizontal
+      [:input {:type "text" :id "keyword"}]
+      [:button.btn-primary {:on-click query} "智能查询" ]
+      ]]))
 
 (defn navbar []
   (let [collapsed? (atom true)]
@@ -69,6 +92,7 @@
 ;; Initialize app
 
 (defn mount-components []
+  (r/render [#'query-div] (.getElementById js/document "query"))
   (r/render [#'navbar] (.getElementById js/document "navbar"))
   (r/render [#'page] (.getElementById js/document "app")))
 

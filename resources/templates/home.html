@@ -2,6 +2,8 @@
 
 {% block content %}
     <div class="container">
+      <div id="query"></div>
+      <input id="token" type="hidden" value="{{csrf-token}}"></input>
       <div id="navbar"></div>
       <div id="app">
         {% if dev %}
