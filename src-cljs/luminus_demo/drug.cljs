@@ -15,7 +15,12 @@
 (defn drug-list [drugs]
   [:div
    (for [drug drugs]
-     [drug-info ((:name drug) (:img drug) (:url drug))])])
+     [drug-info (.-name drug) (.-img drug) " "])])
+
+(defn drug-debug [drugs]
+  (.log js/console "drugs")
+  (doseq [drug drugs]
+     (.log js/console drug)))
 
 (defn home-page []
   [:div.container
@@ -50,7 +55,7 @@
 ;; Handlers
 
 (defn handler [response]
-  (let [items (get response "tngou")]
+  (let [items (.-tngou (clj->js response))]
     (r/render [#'drug-list items] (sel1 :#result))
     ))
 
