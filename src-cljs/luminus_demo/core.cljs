@@ -6,7 +6,7 @@
             [goog.history.EventType :as EventType]
             [markdown.core :refer [md->html]]
             [dommy.core :refer-macros [sel1]]
-            [luminus-demo.drug :refer [query-div]]
+            [luminus-demo.handlers :refer [query-page]]
             )
   (:import goog.History))
 
@@ -26,7 +26,7 @@
 ;; Initialize app
 
 (defn mount-components []
-  (r/render [#'query-div] (sel1 :#query)))
+  (r/render [#'query-page] (sel1 :#query)))
 
 (defn init! []
   (hook-browser-navigation!)

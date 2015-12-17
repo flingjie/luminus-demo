@@ -1,59 +1,12 @@
-(ns luminus-demo.drug
+(ns luminus-demo.handlers
   (:require [reagent.core :as r :refer [atom]]
             [ajax.core :refer [GET POST]]
             [dommy.core :as dommy :refer-macros [sel1]]
             [secretary.core :as secretary :include-macros true]
             [reagent.session :as session]
+            [luminus-demo.views :refer [drug-list]]
             ))
 
-(defn drug-info [name img_url detail_url]
-  [:div
-   [:a {:href detail_url} name]
-   [:a {:href detail_url}
-    [:img.drug-img {:src img_url}]]])
-
-(defn drug-list [drugs]
-  [:div.col-lg-2
-   (for [drug drugs]
-     ^{:key (.-id drug)}
-     [drug-info (.-name drug) (.-img drug) (.-url drug)])])
-
-(defn drug-debug [drugs]
-  (.log js/console "drugs")
-  (doseq [drug drugs]
-     (.log js/console drug)))
-
-(defn home-page []
-  [:div.container
-    [:label "home"]
-  ])
-
-(defn contact-page []
-  [:div.container
-    [:label "contact"]
-  ])
-
-
-(def pages
-  {:home #'home-page
-   :contact #'contact-page})
-
-(defn page []
-  [(pages (session/get :page))])
-
-;; -------------------------
-;; Routes
-(secretary/set-config! :prefix "#")
-
-(secretary/defroute "/" []
-                    (session/put! :page :home))
-
-(secretary/defroute "/contact" []
-                    (session/put! :page :contact))
-
-
-;; -------------------------
-;; Handlers
 (defn reset-btn []
   (->
     (sel1 :#loading-div)
@@ -74,7 +27,6 @@
   (.log js/console (str "error: " status " " status-text))
   (reset-btn))
 
-;; -------------------------
 
 (defn query []
   (let [csrf (.-value (sel1 :#token))
@@ -85,11 +37,9 @@
            :response-format :json
            :handler handler
            :error-handler error-handler})
-    (show-loading)
-    )
-  )
+    (show-loading)))
 
-(defn query-div []
+(defn query-page []
   (fn []
     [:div
      [:div
