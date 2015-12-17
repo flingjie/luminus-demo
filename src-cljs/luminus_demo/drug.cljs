@@ -55,16 +55,14 @@
 ;; -------------------------
 ;; Handlers
 (defn reset-btn []
-  (dommy/remove-class! (sel1 :#loading-div) :loading)
   (->
-    (sel1 :#search-btn)
-    (dommy/remove-attr! :disabled)))
+    (sel1 :#loading-div)
+    (dommy/set-text! "")))
 
 (defn show-loading []
-  (dommy/add-class! (sel1 :#loading-div) :loading)
   (->
-   (sel1 :#search-btn)
-   (dommy/set-attr! :disabled)))
+   (sel1 :#loading-div)
+   (dommy/set-text! "加载中...")))
 
 (defn handler [response]
   (let [items (.-tngou (clj->js response))]
@@ -93,9 +91,10 @@
 
 (defn query-div []
   (fn []
-    [:div.text-center
-     [:div.div-beside
+    [:div
+     [:div
       [:input {:type "text" :id "keyword"}]
-     [:button#search-btn.btn-primary.btn-search {:on-click query} "药物查询"]]
-     [:div#loading-div.div-beside]
+       [:button#search-btn.btn-primary.btn-search {:on-click query} "药物查询"]
+       [:label#loading-div]
+      ]
      ]))
