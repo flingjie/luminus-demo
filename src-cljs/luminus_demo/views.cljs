@@ -6,17 +6,24 @@
             [reagent.session :as session]
             ))
 
-(defn drug-info [name img_url detail_url]
-  [:div
-   [:a {:href detail_url} name]
-   [:a {:href detail_url}
-    [:img.drug-img {:src img_url}]]])
+(defn drug-info [drug-name image-url message]
+  [:tr
+   [:td
+    [:img.drug-img {:src image-url}]]
+   [:td drug-name]
+   [:td message]])
 
 (defn drug-list [drugs]
-  [:div.col-lg-2
-   (for [drug drugs]
+  [:table.table.table-striped.table-hover
+   [:thead
+    [:tr
+      [:th "图片"]
+      [:th "名称"]
+      [:th "功效"]]]
+   [:tbody
+    (for [drug drugs]
      ^{:key (.-id drug)}
-     [drug-info (.-name drug) (.-img drug) (.-url drug)])])
+     [drug-info (.-name drug) (.-img drug) (.-message drug)])]])
 
 
 (defn home-page []

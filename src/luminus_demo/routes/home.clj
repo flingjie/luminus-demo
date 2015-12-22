@@ -30,7 +30,7 @@
                         :content-type :json)
        (:body)
        (parse-string)
-       (println)
+       (response)
        ))))
 
 ;; just for debug
