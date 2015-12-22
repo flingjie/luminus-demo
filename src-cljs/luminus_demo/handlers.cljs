@@ -31,7 +31,7 @@
 (defn query []
   (let [csrf (.-value (sel1 :#token))
         search (.-value (sel1 :#keyword))]
-    (POST "/"
+    (POST "/drug"
           {:headers {:x-CSRF-Token csrf}
            :params {:keyword search}
            :response-format :json

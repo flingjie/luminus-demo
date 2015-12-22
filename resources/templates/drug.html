@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+      <div id="query">
+        {% if dev %}
+        <p>If you're seeing this message, that means you haven't yet compiled your ClojureScript!</p>
+        <p>Please run <code>lein figwheel</code> to start the ClojureScript compiler and reload the page.</p>
+        {% else %}
+        <div class="three-quarters-loader">Loading…</div>
+        {% endif %}
+      </div>
+      <input id="token" type="hidden" value="{{csrf-token}}"></input>
+      <div id="navbar"></div>
+      <div id="result">
+      </div>
+    </div>
+
+    <!-- scripts and styles -->
+    {% style "/css/drug.css" %}
+
+    <script type="text/javascript">
+        var context = "{{servlet-context}}";
+    </script>
+    {% if dev %}
+      {% script "/js/out/goog/base.js" %}
+      {% script "/js/app.js" %}
+      <script type="text/javascript">goog.require("luminus_demo.app");</script>
+    {% else %}
+      {% script "/js/app.js" %}
+    {% endif %}
+{% endblock %}

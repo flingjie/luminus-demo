@@ -11,6 +11,9 @@
 (defn home-page []
   (layout/render "home.html"))
 
+(defn drug-page []
+  (layout/render "drug.html"))
+
 (defn contact-page []
   (layout/render "contact.html"))
 
@@ -27,7 +30,7 @@
                         :content-type :json)
        (:body)
        (parse-string)
-       (response)
+       (println)
        ))))
 
 ;; just for debug
@@ -38,8 +41,8 @@
       (response keyword))))
 ;; just for debug
 
-
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (POST "/" [] (search-drug))
+  (GET "/drug" [] (drug-page))
+  (POST "/drug" [] (search-drug))
   (GET "/contact" [] (contact-page)))
