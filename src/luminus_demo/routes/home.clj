@@ -11,38 +11,14 @@
 (defn home-page []
   (layout/render "home.html"))
 
-(defn drug-page []
-  (layout/render "drug.html"))
+(defn data-page []
+  (layout/render "data.html"))
 
 (defn contact-page []
   (layout/render "contact.html"))
 
-(defn search-drug []
-  (fn [req]
-    (let [keyword (get (:params req) :keyword)]
-      (->
-       (client/post "http://www.tngou.net/api/search"
-                        {:form-params
-                         {:name "drug"
-                          :keyword keyword
-                          }
-                         }
-                        :content-type :json)
-       (:body)
-       (parse-string)
-       (response)
-       ))))
-
-;; just for debug
-(defn search-debug []
-  (fn [req]
-    (let [keyword (get (:params req) :keyword)]
-      (println keyword)
-      (response keyword))))
-;; just for debug
 
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (GET "/drug" [] (drug-page))
-  (POST "/drug" [] (search-drug))
+  (GET "/data" [] (data-page))
   (GET "/contact" [] (contact-page)))
